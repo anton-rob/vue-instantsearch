@@ -169,7 +169,6 @@ import { connectPagination } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
-
 export default {
   name: 'AisPagination',
   mixins: [
@@ -219,6 +218,7 @@ export default {
       };
     },
   },
+  emits: ['page-change'],
   methods: {
     refine(page) {
       const p = Math.min(Math.max(page, 0), this.state.nbPages - 1);
