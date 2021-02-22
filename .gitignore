@@ -6,6 +6,7 @@ coverage
 .DS_store
 .nuxt
 .env
+.idea
 
 # Generated files
 /website/stories
