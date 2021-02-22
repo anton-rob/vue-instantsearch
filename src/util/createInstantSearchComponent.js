@@ -1,7 +1,7 @@
 import { createSuitMixin } from '../mixins/suit';
 import { version } from '../../package.json'; // rollup does pick only what needed from json
 import { _objectSpread } from './polyfills';
-import Vue from 'vue';
+import * as Vue from 'vue';
 
 export const createInstantSearchComponent = component =>
   _objectSpread(
@@ -26,8 +26,8 @@ export const createInstantSearchComponent = component =>
         routing() {
           throw new Error(
             'routing configuration can not be changed dynamically at this point.' +
-              '\n\n' +
-              'Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md'
+            '\n\n' +
+            'Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md'
           );
         },
         searchFunction(searchFunction) {
@@ -38,7 +38,9 @@ export const createInstantSearchComponent = component =>
       created() {
         const searchClient = this.instantSearchInstance.client;
         if (typeof searchClient.addAlgoliaAgent === 'function') {
-          searchClient.addAlgoliaAgent(`Vue (${Vue.version})`);
+          searchClient.addAlgoliaAgent(
+            `Vue (${Vue.version || Vue.default.version})`
+          );
           searchClient.addAlgoliaAgent(`Vue InstantSearch (${version})`);
         }
       },
